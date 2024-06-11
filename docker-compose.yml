@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  casino:
+    image: ${DOCKER_REGISTRY-}casino
+    build:
+      context: .
+      dockerfile: Casino/Dockerfile
+    ports:
+      - "8080:80"
