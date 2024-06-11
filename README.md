@@ -36,3 +36,8 @@ Body parameters:\
 "id": unique identifier of the transaction\
 "type": type of the transaction (Deposit=1, Stake=2, Win=3)\
 "value": amount
+
+### Bonus questions
+- you need to optimize for heavy reads (much more "get player's balance" API calls than "credit
+transaction" calls): current implementation is using ledger to calculate current balance, it have to iterate through previous accepted transactions to determine actual balance on the user account. It is possible to save current balance as variable to user and update its value on each update that is accepted to the ledger.
+- you should support multi node deployment for distributing load: current implementation is using simple docker-compose orchestration. It is possible to extract wallet to separate microservice, therefore we would have 2 seprate microservices (API, wallet) that we can scale as needed. To support this we would also have to extract database and use load balancer to route requests, it would be best to use some orchestration tool like k8s.
